@@ -1,0 +1,18 @@
+services:
+  navidrome:
+    depends_on:
+      - "downloader"
+    image: deluan/navidrome:latest
+    ports:
+      - "4533:4533"
+    restart: unless-stopped
+    volumes:
+      - "/root/navidrome/data:/data"
+      - "/root/navidrome/music:/music"
+  downloader:
+    build: .
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+    volumes:
+      - "/root/navidrome/music:/music"
