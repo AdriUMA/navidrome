@@ -12,8 +12,8 @@ class SongRequest(BaseModel):
 
 @app.post("/download")
 def download_song(request: SongRequest):
-    # if not os.path.isfile(SCRIPT_PATH):
-    #     raise HTTPException(status_code=500, detail="Script downloader-yt.sh no encontrado")
+    if not os.path.isfile(SCRIPT_PATH):
+        raise HTTPException(status_code=500, detail="Script downloader-yt.sh no encontrado")
 
     try:
         result = subprocess.run(
