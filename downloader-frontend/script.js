@@ -21,7 +21,7 @@ async function requestDownload() {
         return;
     }
 
-    message.textContent = "Procesando...";
+    message.textContent = "Enviando...";
 
     try {
         const res = await fetch("http://localhost:8000/download", {
@@ -35,7 +35,7 @@ async function requestDownload() {
         await minWait;
 
         if (res.ok) {
-            message.textContent = `Preparando... ID: ${data.id}`;
+            message.textContent = `Recibido por el servidor...`;
             await sleep(2000);
             lastId = data.id;
             statusChecker(lastId);
@@ -62,7 +62,7 @@ async function statusChecker(uuid) {
 
         if (res.ok) {
             if (data.status == "processing") {
-                message.textContent = `En proceso. ID: ${data.id}`;
+                message.textContent = `En proceso...`;
                 message.color = "green";
             } else if(data.status == "done") {
                 message.textContent = `Completado.`;
