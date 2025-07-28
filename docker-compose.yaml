@@ -8,7 +8,7 @@ services:
       - "/root/navidrome/data:/data"
       - "/root/navidrome/music:/music"
   downloader_service:
-    build: .
+    build: ./downloader-service
     ports:
       - "8000:8000"
     restart: unless-stopped
