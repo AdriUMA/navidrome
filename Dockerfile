@@ -1,7 +1,5 @@
 FROM alpine:latest
 
-RUN mkdir -p /root/navidrome/config /root/navidrome/music
-
 RUN apk update && \
     apk add --no-cache python3 py3-pip curl ffmpeg
 
