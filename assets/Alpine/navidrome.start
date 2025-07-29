@@ -1,0 +1,5 @@
+#!/bin/sh
+
+cd /root/navidrome || exit
+git pull
+docker-compose up --build -d
