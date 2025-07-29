@@ -1,5 +1,21 @@
 #!/bin/sh
 
-cd /root/navidrome || exit
+# Esperamos hasta que Docker esté disponible
+TRIES=0
+while ! docker info >/dev/null 2>&1; do
+    echo "Esperando que Docker se inicie..."
+    sleep 2
+    TRIES=$((TRIES+1))
+    if [ "$TRIES" -gt 30 ]; then
+        echo "Docker no está disponible después de 60 segundos. Abortando."
+        exit 1
+    fi
+done
+
+cd /root/navidrome || exit 1
+
+echo "Ejecutando git pull..."
 git pull
+
+echo "Levantando contenedores..."
 docker-compose up --build -d

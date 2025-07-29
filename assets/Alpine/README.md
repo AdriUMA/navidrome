@@ -2,11 +2,13 @@
 
 ## How to run
 
+ > [!WARNING]
+ > Execute from this folder
+
 ```bash
 apk add git docker docker-compose;
-git clone https://github.com/AdriUMA/navidrome;
-cd navidrome/assets;
 cp navidrome.start /etc/local.d/navidrome.start;
 chmod +x /etc/local.d/navidrome.start;
+rc-update add docker default;
 rc-update add local default;
 ```
